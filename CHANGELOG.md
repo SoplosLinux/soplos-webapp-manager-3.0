@@ -19,6 +19,12 @@ First beta of Soplos WebApp Manager 3.0.
 
 - Icons are read back as `data:` URIs instead of filesystem paths, so they display without granting the window access to arbitrary files.
 - Popup dialogs now cap their height and scroll internally, so a long one (like the browser parameters help) never grows past the window.
+- New app icon.
+
+### Fixed
+
+- Selecting a custom icon froze the whole window: `pick_icon_file` ran the native file dialog directly on the main GTK thread instead of off it. This, and 6 other commands with the same issue (listing, creating, updating, deleting and running a WebApp), now run through `spawn_blocking`.
+- Favicon download (`download_favicon`) had no HTTP timeouts at all, so an unresponsive DuckDuckGo/Google icon service could freeze the app indefinitely instead of failing after a few seconds.
 
 ## [3.0.0-alpha] - 2026-09-29
 

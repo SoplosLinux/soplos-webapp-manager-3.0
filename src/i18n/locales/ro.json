@@ -1,0 +1,89 @@
+{
+  "app": {
+    "title": "Manager WebApp Soplos"
+  },
+  "hero": {
+    "title": "Transformă orice site într-o aplicație",
+    "description": "Aplicații web izolate, integrate pe desktop, cu browserul pe care îl folosești deja."
+  },
+  "common": {
+    "cancel": "Anulează",
+    "ok": "OK",
+    "close": "Închide",
+    "save": "Salvează"
+  },
+  "sidebar": {
+    "switchToLight": "Comută la tema deschisă",
+    "switchToDark": "Comută la tema închisă",
+    "about": "Despre",
+    "aboutTooltip": "Despre Manager WebApp Soplos (F1)",
+    "settingsTooltip": "Setări",
+    "language": "Limbă"
+  },
+  "webapp": {
+    "emptyTitle": "Nicio WebApp instalată.",
+    "emptyHint": "Apasă butonul „+” pentru a adăuga una, sau trage aici un link din browser.",
+    "dropHint": "Eliberează pentru a crea o WebApp",
+    "addTooltip": "Adaugă WebApp",
+    "removeTooltip": "Elimină WebApp",
+    "run": "Rulează WebApp",
+    "edit": "Editează WebApp",
+    "delete": "Șterge WebApp",
+    "name": "Nume",
+    "namePlaceholder": "ex. YouTube",
+    "url": "Adresă web",
+    "urlPlaceholder": "https://...",
+    "icon": "Pictogramă",
+    "selectIcon": "Selectează pictograma",
+    "selectIconTitle": "Selectează o pictogramă",
+    "imagesFilter": "Imagini (PNG, SVG, JPG)",
+    "category": "Categorie",
+    "categories": {
+      "network": "Internet",
+      "game": "Jocuri",
+      "office": "Birou",
+      "audiovideo": "Audio și video",
+      "development": "Dezvoltare",
+      "utility": "Utilitare"
+    },
+    "browser": "Browser",
+    "noBrowsers": "Nu a fost detectat niciun browser compatibil pe acest sistem.",
+    "navbar": "Bară de navigare",
+    "incognito": "Mod incognito",
+    "extraParams": "Parametri suplimentari",
+    "extraParamsPlaceholder": "ex. --start-maximized",
+    "paramsHelpTooltip": "Ajutor pentru parametri comuni",
+    "paramsHelpTitle": "Ajutor pentru parametrii browserului",
+    "paramsHelp": {
+      "startMaximized": "Forțează WebApp să ocupe tot ecranul la pornire.",
+      "disableFeatures": "Previne bulele plutitoare la trecerea peste file (foarte util în modul WebApp).",
+      "forceDarkMode": "Forțează afișarea site-ului în mod întunecat, chiar dacă nu este acceptat nativ.",
+      "userAgent": "Simulează un browser sau dispozitiv diferit.",
+      "proxyServer": "Folosește un proxy specific pentru această WebApp.",
+      "windowSize": "Stabilește o dimensiune fixă a ferestrei.",
+      "disableNotifications": "Dezactivează toate notificările site-ului.",
+      "shmSize": "Mărește memoria partajată (util pentru aplicații grele în containere)."
+    },
+    "addTitle": "Adaugă WebApp",
+    "editTitle": "Editează WebApp",
+    "deleteConfirmTitle": "Ștergi {name}?",
+    "deleteConfirmBody": "Aceasta elimină fișierul .desktop și profilul izolat de browser. Acțiunea nu poate fi anulată.",
+    "nameRequired": "Dă WebApp-ului un nume și o adresă web pentru a continua.",
+    "downloadingFavicon": "Se caută o pictogramă pentru această adresă…"
+  },
+  "about": {
+    "version": "Versiunea {version}",
+    "tagline": "Creați și gestionați aplicații Web izolate pentru Soplos Linux",
+    "copyright": "Copyright © 2026 Sergi Perich",
+    "license": "Licențiat sub GNU General Public License v3.0 sau ulterioară",
+    "website": "soplos.org"
+  },
+  "environment": {
+    "gnome": "GNOME",
+    "kde": "KDE Plasma",
+    "xfce": "XFCE",
+    "unknown": "Necunoscut",
+    "x11": "X11",
+    "wayland": "Wayland"
+  }
+}

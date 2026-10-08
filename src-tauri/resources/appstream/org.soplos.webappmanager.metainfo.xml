@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.soplos.webappmanager</id>
+  <pkgname>soplos-webapp-manager</pkgname>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <project_group>org.soploslinux</project_group>
+
+  <name>Soplos WebApp Manager</name>
+  <summary>Create and manage isolated Web Applications</summary>
+
+  <description>
+    <p>
+      Soplos WebApp Manager lets you run websites as native desktop applications.
+      It creates isolated browsing profiles (Site Specific Browsers) so a webapp
+      never shares cookies or open tabs with your main browsing session, using
+      whichever browser you already have installed.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">org.soplos.webappmanager.desktop</launchable>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>screenshot01.png</image>
+      <caption>Main window with the hero banner and the list of WebApps</caption>
+    </screenshot>
+    <screenshot>
+      <image>screenshot02.png</image>
+      <caption>Editing a WebApp's name, address, icon and browser</caption>
+    </screenshot>
+    <screenshot>
+      <image>screenshot03.png</image>
+      <caption>Help for the extra browser launch parameters</caption>
+    </screenshot>
+    <screenshot>
+      <image>screenshot04.png</image>
+      <caption>Adding a new WebApp with automatic favicon lookup</caption>
+    </screenshot>
+  </screenshots>
+
+  <provides>
+    <binary>soplos-webapp-manager</binary>
+  </provides>
+
+  <url type="homepage">https://soplos.org</url>
+
+  <developer id="org.soploslinux">
+    <name>Sergi Perich</name>
+  </developer>
+
+  <releases>
+    <release version="3.0.0-beta" date="2026-10-02">
+      <description>
+        <p>First beta of the Tauri-based rewrite of Soplos WebApp Manager.</p>
+        <ul>
+          <li>New hero banner with the language switcher and the Add/Remove controls</li>
+          <li>Keyboard shortcuts for every common action</li>
+          <li>Drag and drop a link from the browser to create a WebApp</li>
+          <li>Many more browsers detected, including LibreWolf, Zen Browser and Opera</li>
+          <li>Automatic fix for a blank window in virtual machines</li>
+        </ul>
+      </description>
+    </release>
+    <release version="3.0.0-alpha" date="2026-09-29">
+      <description>
+        <p>First alpha of the Tauri-based rewrite of Soplos WebApp Manager.</p>
+      </description>
+    </release>
+  </releases>
+
+  <content_rating type="oars-1.1" />
+</component>

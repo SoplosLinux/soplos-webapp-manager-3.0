@@ -1,0 +1,61 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "soplos-webapp-manager",
+  "version": "3.0.0-beta",
+  "identifier": "org.soplos.webappmanager",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://localhost:1421",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Soplos WebApp Manager",
+        "width": 720,
+        "height": 560,
+        "minWidth": 560,
+        "minHeight": 420,
+        "resizable": true,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["deb"],
+    "publisher": "Sergi Perich",
+    "homepage": "https://soplos.org",
+    "copyright": "Copyright © 2026 Sergi Perich",
+    "license": "GPL-3.0-or-later",
+    "licenseFile": "../LICENSE",
+    "category": "Utility",
+    "shortDescription": "Create and manage isolated Web Applications",
+    "longDescription": "A lightweight Site Specific Browser (SSB) manager for Soplos Linux. Creates isolated, desktop-integrated web applications with support for multiple browsers.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.png"
+    ],
+    "linux": {
+      "deb": {
+        "section": "utils",
+        "priority": "optional",
+        "desktopTemplate": "resources/debian/soplos-webapp-manager.desktop.hbs",
+        "files": {
+          "/usr/share/metainfo/org.soplos.webappmanager.metainfo.xml": "resources/appstream/org.soplos.webappmanager.metainfo.xml",
+          "/usr/share/doc/soplos-webapp-manager/copyright": "resources/debian/copyright",
+          "/usr/share/doc/soplos-webapp-manager/screenshots/screenshot01.png": "resources/screenshots/screenshot01.png",
+          "/usr/share/doc/soplos-webapp-manager/screenshots/screenshot02.png": "resources/screenshots/screenshot02.png",
+          "/usr/share/doc/soplos-webapp-manager/screenshots/screenshot03.png": "resources/screenshots/screenshot03.png",
+          "/usr/share/doc/soplos-webapp-manager/screenshots/screenshot04.png": "resources/screenshots/screenshot04.png"
+        }
+      }
+    }
+  }
+}

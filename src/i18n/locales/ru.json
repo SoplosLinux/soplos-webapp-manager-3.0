@@ -1,0 +1,89 @@
+{
+  "app": {
+    "title": "Менеджер WebApp Soplos"
+  },
+  "hero": {
+    "title": "Превратите любой сайт в приложение",
+    "description": "Изолированные веб-приложения, интегрированные в рабочий стол, с уже установленным браузером."
+  },
+  "common": {
+    "cancel": "Отмена",
+    "ok": "ОК",
+    "close": "Закрыть",
+    "save": "Сохранить"
+  },
+  "sidebar": {
+    "switchToLight": "Переключить на светлую тему",
+    "switchToDark": "Переключить на тёмную тему",
+    "about": "О программе",
+    "aboutTooltip": "О программе Менеджер WebApp Soplos (F1)",
+    "settingsTooltip": "Настройки",
+    "language": "Язык"
+  },
+  "webapp": {
+    "emptyTitle": "Нет установленных WebApp.",
+    "emptyHint": "Нажмите кнопку «+», чтобы добавить приложение, или перетащите сюда ссылку из браузера.",
+    "dropHint": "Отпустите, чтобы создать WebApp",
+    "addTooltip": "Добавить WebApp",
+    "removeTooltip": "Удалить WebApp",
+    "run": "Запустить WebApp",
+    "edit": "Изменить WebApp",
+    "delete": "Удалить WebApp",
+    "name": "Название",
+    "namePlaceholder": "например, YouTube",
+    "url": "Веб-адрес",
+    "urlPlaceholder": "https://...",
+    "icon": "Значок",
+    "selectIcon": "Выбрать значок",
+    "selectIconTitle": "Выберите значок",
+    "imagesFilter": "Изображения (PNG, SVG, JPG)",
+    "category": "Категория",
+    "categories": {
+      "network": "Интернет",
+      "game": "Игры",
+      "office": "Офис",
+      "audiovideo": "Аудио и видео",
+      "development": "Разработка",
+      "utility": "Утилиты"
+    },
+    "browser": "Браузер",
+    "noBrowsers": "В этой системе не обнаружено ни одного поддерживаемого браузера.",
+    "navbar": "Панель навигации",
+    "incognito": "Режим инкогнито",
+    "extraParams": "Дополнительные параметры",
+    "extraParamsPlaceholder": "например, --start-maximized",
+    "paramsHelpTooltip": "Справка по распространённым параметрам",
+    "paramsHelpTitle": "Справка по параметрам браузера",
+    "paramsHelp": {
+      "startMaximized": "Заставляет WebApp занимать весь экран при запуске.",
+      "disableFeatures": "Предотвращает всплывающие подсказки при наведении на вкладки (очень полезно в режиме WebApp).",
+      "forceDarkMode": "Заставляет сайт отображаться в тёмном режиме, даже если он не поддерживается изначально.",
+      "userAgent": "Имитирует другой браузер или устройство.",
+      "proxyServer": "Использует определённый прокси для этой WebApp.",
+      "windowSize": "Задаёт фиксированный размер окна.",
+      "disableNotifications": "Отключает все уведомления сайта.",
+      "shmSize": "Увеличивает общую память (полезно для тяжёлых приложений в контейнерах)."
+    },
+    "addTitle": "Добавить WebApp",
+    "editTitle": "Изменить WebApp",
+    "deleteConfirmTitle": "Удалить {name}?",
+    "deleteConfirmBody": "Это удалит файл .desktop и изолированный профиль браузера. Это действие нельзя отменить.",
+    "nameRequired": "Укажите название и веб-адрес WebApp, чтобы продолжить.",
+    "downloadingFavicon": "Поиск значка для этого адреса…"
+  },
+  "about": {
+    "version": "Версия {version}",
+    "tagline": "Создание и управление изолированными веб-приложениями для Soplos Linux",
+    "copyright": "Copyright © 2026 Sergi Perich",
+    "license": "Распространяется по лицензии GNU General Public License v3.0 или более поздней версии",
+    "website": "soplos.org"
+  },
+  "environment": {
+    "gnome": "GNOME",
+    "kde": "KDE Plasma",
+    "xfce": "XFCE",
+    "unknown": "Неизвестно",
+    "x11": "X11",
+    "wayland": "Wayland"
+  }
+}

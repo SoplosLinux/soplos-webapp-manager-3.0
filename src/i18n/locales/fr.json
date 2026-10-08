@@ -1,0 +1,89 @@
+{
+  "app": {
+    "title": "Gestionnaire WebApp Soplos"
+  },
+  "hero": {
+    "title": "Transformez n'importe quel site en application",
+    "description": "Applications web isolées et intégrées au bureau, avec le navigateur que vous utilisez déjà."
+  },
+  "common": {
+    "cancel": "Annuler",
+    "ok": "OK",
+    "close": "Fermer",
+    "save": "Enregistrer"
+  },
+  "sidebar": {
+    "switchToLight": "Passer au thème clair",
+    "switchToDark": "Passer au thème sombre",
+    "about": "À propos",
+    "aboutTooltip": "À propos de Gestionnaire WebApp Soplos (F1)",
+    "settingsTooltip": "Paramètres",
+    "language": "Langue"
+  },
+  "webapp": {
+    "emptyTitle": "Aucune WebApp installée.",
+    "emptyHint": "Cliquez sur le bouton « + » pour en ajouter une, ou glissez un lien ici depuis votre navigateur.",
+    "dropHint": "Déposez pour créer une WebApp",
+    "addTooltip": "Ajouter une WebApp",
+    "removeTooltip": "Supprimer la WebApp",
+    "run": "Lancer la WebApp",
+    "edit": "Modifier la WebApp",
+    "delete": "Supprimer la WebApp",
+    "name": "Nom",
+    "namePlaceholder": "p. ex. YouTube",
+    "url": "Adresse web",
+    "urlPlaceholder": "https://...",
+    "icon": "Icône",
+    "selectIcon": "Sélectionner une icône",
+    "selectIconTitle": "Sélectionner une icône",
+    "imagesFilter": "Images (PNG, SVG, JPG)",
+    "category": "Catégorie",
+    "categories": {
+      "network": "Internet",
+      "game": "Jeux",
+      "office": "Bureautique",
+      "audiovideo": "Audio et vidéo",
+      "development": "Développement",
+      "utility": "Utilitaires"
+    },
+    "browser": "Navigateur",
+    "noBrowsers": "Aucun navigateur pris en charge n'a été détecté sur ce système.",
+    "navbar": "Barre de navigation",
+    "incognito": "Mode incognito",
+    "extraParams": "Paramètres supplémentaires",
+    "extraParamsPlaceholder": "p. ex. --start-maximized",
+    "paramsHelpTooltip": "Aide sur les paramètres courants",
+    "paramsHelpTitle": "Aide sur les paramètres du navigateur",
+    "paramsHelp": {
+      "startMaximized": "Force la WebApp à occuper tout l'écran au démarrage.",
+      "disableFeatures": "Empêche les bulles flottantes lors du survol des onglets (très utile en mode WebApp).",
+      "forceDarkMode": "Force le site à s'afficher en mode sombre, même s'il ne le prend pas en charge nativement.",
+      "userAgent": "Simule un navigateur ou un appareil différent.",
+      "proxyServer": "Utilise un proxy spécifique pour cette WebApp.",
+      "windowSize": "Définit une taille de fenêtre fixe.",
+      "disableNotifications": "Désactive toutes les notifications du site.",
+      "shmSize": "Augmente la mémoire partagée (utile pour les applications lourdes dans des conteneurs)."
+    },
+    "addTitle": "Ajouter une WebApp",
+    "editTitle": "Modifier la WebApp",
+    "deleteConfirmTitle": "Supprimer {name} ?",
+    "deleteConfirmBody": "Cela supprime son fichier .desktop et le profil de navigateur isolé. Cette action est irréversible.",
+    "nameRequired": "Indiquez un nom et une adresse web pour continuer.",
+    "downloadingFavicon": "Recherche d'une icône pour cette adresse…"
+  },
+  "about": {
+    "version": "Version {version}",
+    "tagline": "Créer et gérer des applications Web isolées pour Soplos Linux",
+    "copyright": "Copyright © 2026 Sergi Perich",
+    "license": "Sous licence GNU General Public License v3.0 ou ultérieure",
+    "website": "soplos.org"
+  },
+  "environment": {
+    "gnome": "GNOME",
+    "kde": "KDE Plasma",
+    "xfce": "XFCE",
+    "unknown": "Inconnu",
+    "x11": "X11",
+    "wayland": "Wayland"
+  }
+}

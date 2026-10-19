@@ -7,7 +7,22 @@
   <project_group>org.soploslinux</project_group>
 
   <name>Soplos WebApp Manager</name>
+  <name xml:lang="es">Soplos WebApp Manager</name>
+  <name xml:lang="fr">Soplos WebApp Manager</name>
+  <name xml:lang="de">Soplos WebApp Manager</name>
+  <name xml:lang="pt">Soplos WebApp Manager</name>
+  <name xml:lang="it">Soplos WebApp Manager</name>
+  <name xml:lang="ro">Soplos WebApp Manager</name>
+  <name xml:lang="ru">Soplos WebApp Manager</name>
+
   <summary>Create and manage isolated Web Applications</summary>
+  <summary xml:lang="es">Crea y gestiona aplicaciones web aisladas</summary>
+  <summary xml:lang="fr">Créez et gérez des applications web isolées</summary>
+  <summary xml:lang="de">Isolierte Web-Applikationen erstellen und verwalten</summary>
+  <summary xml:lang="pt">Crie e gira aplicações web isoladas</summary>
+  <summary xml:lang="it">Crea e gestisci applicazioni web isolate</summary>
+  <summary xml:lang="ro">Creați și gestionați aplicații web izolate</summary>
+  <summary xml:lang="ru">Создание и управление изолированными веб-приложениями</summary>
 
   <description>
     <p>
@@ -16,26 +31,96 @@
       never shares cookies or open tabs with your main browsing session, using
       whichever browser you already have installed.
     </p>
+    <p xml:lang="es">
+      Soplos WebApp Manager permite ejecutar sitios web como aplicaciones de escritorio nativas.
+      Crea perfiles de navegación aislados (navegadores específicos del sitio) para que una
+      aplicación web nunca comparta cookies ni pestañas abiertas con tu sesión de navegación
+      principal, usando el navegador que ya tengas instalado.
+    </p>
+    <p xml:lang="fr">
+      Soplos WebApp Manager vous permet d'exécuter des sites web comme des applications de
+      bureau natives. Il crée des profils de navigation isolés (navigateurs spécifiques au
+      site) afin qu'une application web ne partage jamais les cookies ni les onglets ouverts
+      avec votre session de navigation principale, en utilisant le navigateur déjà installé.
+    </p>
+    <p xml:lang="de">
+      Soplos WebApp Manager ermöglicht es, Websites als native Desktop-Anwendungen auszuführen.
+      Es erstellt isolierte Browser-Profile (Site Specific Browsers), sodass eine Web-App
+      niemals Cookies oder offene Tabs mit der Hauptbrowser-Sitzung teilt, und verwendet
+      dafür den bereits installierten Browser.
+    </p>
+    <p xml:lang="pt">
+      O Soplos WebApp Manager permite executar sites como aplicações de desktop nativas.
+      Cria perfis de navegação isolados (navegadores específicos do site) para que uma
+      aplicação web nunca partilhe cookies nem separadores abertos com a sessão de navegação
+      principal, usando o navegador que já tem instalado.
+    </p>
+    <p xml:lang="it">
+      Soplos WebApp Manager consente di eseguire siti web come applicazioni desktop native.
+      Crea profili di navigazione isolati (browser specifici del sito) in modo che una
+      web app non condivida mai cookie o schede aperte con la sessione di navigazione
+      principale, utilizzando il browser già installato.
+    </p>
+    <p xml:lang="ro">
+      Soplos WebApp Manager vă permite să rulați site-uri web ca aplicații desktop native.
+      Creează profiluri de navigare izolate (browsere specifice site-ului) astfel încât o
+      aplicație web să nu partajeze niciodată cookie-uri sau file deschise cu sesiunea
+      principală de navigare, folosind browserul deja instalat.
+    </p>
+    <p xml:lang="ru">
+      Soplos WebApp Manager позволяет запускать веб-сайты как нативные настольные приложения.
+      Он создаёт изолированные профили браузера (браузеры для конкретного сайта), чтобы
+      веб-приложение никогда не делило куки или открытые вкладки с основной сессией браузера,
+      используя любой уже установленный браузер.
+    </p>
   </description>
 
   <launchable type="desktop-id">org.soplos.webappmanager.desktop</launchable>
 
   <screenshots>
     <screenshot type="default">
-      <image>screenshot01.png</image>
+      <image>https://raw.githubusercontent.com/SoplosLinux/soplos-webapp-manager-3.0/main/src-tauri/resources/screenshots/screenshot01.png</image>
       <caption>Main window with the hero banner and the list of WebApps</caption>
+      <caption xml:lang="es">Ventana principal con el banner y la lista de aplicaciones web</caption>
+      <caption xml:lang="fr">Fenêtre principale avec la bannière et la liste des applications web</caption>
+      <caption xml:lang="de">Hauptfenster mit dem Banner und der Liste der Web-Apps</caption>
+      <caption xml:lang="pt">Janela principal com o banner e a lista de aplicações web</caption>
+      <caption xml:lang="it">Finestra principale con il banner e l'elenco delle applicazioni web</caption>
+      <caption xml:lang="ro">Fereastra principală cu bannerul și lista aplicațiilor web</caption>
+      <caption xml:lang="ru">Главное окно с баннером и списком веб-приложений</caption>
     </screenshot>
     <screenshot>
-      <image>screenshot02.png</image>
+      <image>https://raw.githubusercontent.com/SoplosLinux/soplos-webapp-manager-3.0/main/src-tauri/resources/screenshots/screenshot02.png</image>
       <caption>Editing a WebApp's name, address, icon and browser</caption>
+      <caption xml:lang="es">Editando el nombre, dirección, icono y navegador de una aplicación web</caption>
+      <caption xml:lang="fr">Modification du nom, de l'adresse, de l'icône et du navigateur d'une application web</caption>
+      <caption xml:lang="de">Name, Adresse, Symbol und Browser einer Web-App bearbeiten</caption>
+      <caption xml:lang="pt">Editando o nome, endereço, ícone e navegador de uma aplicação web</caption>
+      <caption xml:lang="it">Modifica del nome, indirizzo, icona e browser di una web app</caption>
+      <caption xml:lang="ro">Editarea numelui, adresei, pictogramei și browserului unei aplicații web</caption>
+      <caption xml:lang="ru">Редактирование имени, адреса, значка и браузера веб-приложения</caption>
     </screenshot>
     <screenshot>
-      <image>screenshot03.png</image>
+      <image>https://raw.githubusercontent.com/SoplosLinux/soplos-webapp-manager-3.0/main/src-tauri/resources/screenshots/screenshot03.png</image>
       <caption>Help for the extra browser launch parameters</caption>
+      <caption xml:lang="es">Ayuda para los parámetros de lanzamiento del navegador</caption>
+      <caption xml:lang="fr">Aide pour les paramètres de lancement supplémentaires du navigateur</caption>
+      <caption xml:lang="de">Hilfe zu den zusätzlichen Browser-Startparametern</caption>
+      <caption xml:lang="pt">Ajuda para os parâmetros de lançamento extra do navegador</caption>
+      <caption xml:lang="it">Guida ai parametri di avvio extra del browser</caption>
+      <caption xml:lang="ro">Ajutor pentru parametrii suplimentari de lansare a browserului</caption>
+      <caption xml:lang="ru">Справка по дополнительным параметрам запуска браузера</caption>
     </screenshot>
     <screenshot>
-      <image>screenshot04.png</image>
+      <image>https://raw.githubusercontent.com/SoplosLinux/soplos-webapp-manager-3.0/main/src-tauri/resources/screenshots/screenshot04.png</image>
       <caption>Adding a new WebApp with automatic favicon lookup</caption>
+      <caption xml:lang="es">Añadiendo una nueva aplicación web con búsqueda automática de favicon</caption>
+      <caption xml:lang="fr">Ajout d'une nouvelle application web avec recherche automatique de favicon</caption>
+      <caption xml:lang="de">Neue Web-App hinzufügen mit automatischer Favicon-Suche</caption>
+      <caption xml:lang="pt">Adicionando uma nova aplicação web com pesquisa automática de favicon</caption>
+      <caption xml:lang="it">Aggiunta di una nuova web app con ricerca automatica del favicon</caption>
+      <caption xml:lang="ro">Adăugarea unei noi aplicații web cu căutare automată a favicon-ului</caption>
+      <caption xml:lang="ru">Добавление нового веб-приложения с автоматическим поиском favicon</caption>
     </screenshot>
   </screenshots>
 
@@ -46,10 +131,20 @@
   <url type="homepage">https://soplos.org</url>
 
   <developer id="org.soploslinux">
-    <name>Sergi Perich</name>
+    <name>Soplos Linux</name>
   </developer>
 
   <releases>
+    <release version="3.0.0-1-beta" date="2026-10-19">
+      <description>
+        <p>Packaging and documentation standardisation.</p>
+        <ul>
+          <li>Unix manual page added (soplos-webapp-manager(1))</li>
+          <li>Desktop entry and AppStream metainfo translated to 8 languages</li>
+          <li>README updated with badges, architecture, shortcuts and build instructions</li>
+        </ul>
+      </description>
+    </release>
     <release version="3.0.0-beta" date="2026-10-02">
       <description>
         <p>First beta of the Tauri-based rewrite of Soplos WebApp Manager.</p>

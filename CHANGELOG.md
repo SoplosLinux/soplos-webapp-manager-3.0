@@ -2,6 +2,19 @@
 
 All notable changes to Soplos WebApp Manager are documented in this file.
 
+## [3.0.0-1-beta] - 2026-10-19
+
+### Added
+
+- Unix manual page `soplos-webapp-manager(1)`, installed to `/usr/share/man/man1/`.
+- Desktop entry translated to 8 languages (en, es, fr, de, pt, it, ro, ru): `GenericName`, `Comment` and `Keywords`.
+- AppStream metainfo translated to 8 languages: `name`, `summary`, `description` and screenshot captions.
+
+### Changed
+
+- README updated with badges, architecture tree, keyboard shortcuts table, `man` usage and build instructions.
+- CHANGELOG updated with this entry.
+
 ## [3.0.0-beta] - 2026-10-02
 
 First beta of Soplos WebApp Manager 3.0.

@@ -1,0 +1,65 @@
+.TH "SOPLOS-WEBAPP-MANAGER" "1" "2026-10-19" "Soplos Linux" "User Commands"
+.SH NAME
+soplos-webapp-manager \- Create and manage isolated Web Applications for Soplos Linux
+.SH SYNOPSIS
+.B soplos-webapp-manager
+[\fIOPTIONS\fR]
+.SH DESCRIPTION
+.B soplos-webapp-manager
+is the official Site Specific Browser (SSB) manager for Soplos Linux.
+Built with Tauri 2, Rust, and Svelte architecture, it turns any website into
+its own desktop application with an isolated browser profile:
+.IP \[bu] 2
+Create a WebApp from any URL, with its own isolated browser profile and
+desktop entry.
+.IP \[bu]
+Works with whichever supported browser you already have installed: Firefox,
+LibreWolf, Zen Browser, Chromium, Google Chrome, Brave, Vivaldi, Opera,
+Opera GX, Microsoft Edge, Helium or GNOME Web — native or Flatpak.
+.IP \[bu]
+Drag a link from the browser's address bar onto the window to create a
+WebApp from it directly.
+.IP \[bu]
+Automatic favicon lookup, or pick your own icon.
+.IP \[bu]
+Optional navigation bar, incognito mode and extra browser launch parameters
+per WebApp.
+.IP \[bu]
+Edit or delete any WebApp at any time; deleting removes its desktop entry
+and its isolated profile.
+.SH OPTIONS
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.SH KEYBOARD SHORTCUTS
+.TP
+.B F1
+About dialog.
+.TP
+.B Ctrl+N
+Add a new WebApp.
+.TP
+.B Delete
+Remove the selected WebApp.
+.TP
+.B Ctrl+Q
+Quit the application.
+.SH FILES
+.TP
+.I ~/.local/share/applications/soplos-webapp-*.desktop
+Desktop entries created for each WebApp.
+.TP
+.I ~/.local/share/soplos-webapps/<id>/
+Isolated browser profile directory for each WebApp.
+.SH AUTHOR
+Written by Sergi Perich <info@soploslinux.com> for the Soplos Linux project.
+.SH COPYRIGHT
+Copyright \(co 2026 Sergi Perich <info@soploslinux.com>.
+.br
+License: GPL-3.0-or-later <https://www.gnu.org/licenses/gpl-3.0.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+.SH SEE ALSO
+.BR soplos-welcome (1),
+.BR soplos-store (1)

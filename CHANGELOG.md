@@ -2,6 +2,23 @@
 
 All notable changes to Soplos WebApp Manager are documented in this file.
 
+## [3.0.0-2-beta] - 2026-10-22
+
+### Added
+
+- `CHANGELOG.md` is installed as `/usr/share/doc/soplos-webapp-manager/changelog.gz`.
+- AppStream metainfo: categories and keywords in the eight languages, the same ones as the desktop entry.
+- The Debian copyright now declares Lucide (ISC), used for the interface icons.
+
+### Changed
+
+- The manual page is installed compressed, as `/usr/share/man/man1/soplos-webapp-manager.1.gz`.
+
+### Fixed
+
+- AppStream metainfo: the developer and project group identifiers were `org.soploslinux`. They are now `org.soplos`, matching the soplos.org domain and the other Soplos apps. The developer name is now Sergi Perich, like the other apps, instead of Soplos Linux.
+- Manual page: an em dash written as a raw character made groff report invalid input characters.
+
 ## [3.0.0-1-beta] - 2026-10-19
 
 ### Added

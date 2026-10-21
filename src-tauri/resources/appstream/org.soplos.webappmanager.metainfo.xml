@@ -4,7 +4,7 @@
   <pkgname>soplos-webapp-manager</pkgname>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-  <project_group>org.soploslinux</project_group>
+  <project_group>org.soplos</project_group>
 
   <name>Soplos WebApp Manager</name>
   <name xml:lang="es">Soplos WebApp Manager</name>
@@ -75,6 +75,55 @@
     </p>
   </description>
 
+  <categories>
+    <category>System</category>
+    <category>Settings</category>
+    <category>Network</category>
+  </categories>
+
+  <keywords>
+    <keyword>webapp</keyword>
+    <keyword>ssb</keyword>
+    <keyword>browser</keyword>
+    <keyword>pwa</keyword>
+    <keyword>site specific browser</keyword>
+    <keyword xml:lang="es">webapp</keyword>
+    <keyword xml:lang="es">ssb</keyword>
+    <keyword xml:lang="es">navegador</keyword>
+    <keyword xml:lang="es">pwa</keyword>
+    <keyword xml:lang="es">navegador específico del sitio</keyword>
+    <keyword xml:lang="fr">webapp</keyword>
+    <keyword xml:lang="fr">ssb</keyword>
+    <keyword xml:lang="fr">navigateur</keyword>
+    <keyword xml:lang="fr">pwa</keyword>
+    <keyword xml:lang="fr">navigateur spécifique au site</keyword>
+    <keyword xml:lang="de">WebApp</keyword>
+    <keyword xml:lang="de">SSB</keyword>
+    <keyword xml:lang="de">Browser</keyword>
+    <keyword xml:lang="de">PWA</keyword>
+    <keyword xml:lang="de">Site-Specific-Browser</keyword>
+    <keyword xml:lang="pt">webapp</keyword>
+    <keyword xml:lang="pt">ssb</keyword>
+    <keyword xml:lang="pt">navegador</keyword>
+    <keyword xml:lang="pt">pwa</keyword>
+    <keyword xml:lang="pt">navegador específico do site</keyword>
+    <keyword xml:lang="it">webapp</keyword>
+    <keyword xml:lang="it">ssb</keyword>
+    <keyword xml:lang="it">browser</keyword>
+    <keyword xml:lang="it">pwa</keyword>
+    <keyword xml:lang="it">browser specifico del sito</keyword>
+    <keyword xml:lang="ro">webapp</keyword>
+    <keyword xml:lang="ro">ssb</keyword>
+    <keyword xml:lang="ro">browser</keyword>
+    <keyword xml:lang="ro">pwa</keyword>
+    <keyword xml:lang="ro">browser specific site</keyword>
+    <keyword xml:lang="ru">веб-приложение</keyword>
+    <keyword xml:lang="ru">ssb</keyword>
+    <keyword xml:lang="ru">браузер</keyword>
+    <keyword xml:lang="ru">pwa</keyword>
+    <keyword xml:lang="ru">браузер для сайта</keyword>
+  </keywords>
+
   <launchable type="desktop-id">org.soplos.webappmanager.desktop</launchable>
 
   <screenshots>
@@ -130,11 +179,22 @@
 
   <url type="homepage">https://soplos.org</url>
 
-  <developer id="org.soploslinux">
-    <name>Soplos Linux</name>
+  <developer id="org.soplos">
+    <name>Sergi Perich</name>
   </developer>
 
   <releases>
+    <release version="3.0.0-2-beta" date="2026-10-22">
+      <description>
+        <p>Packaging and metadata fixes.</p>
+        <ul>
+          <li>Changelog installed to /usr/share/doc/soplos-webapp-manager/</li>
+          <li>AppStream categories and keywords in 8 languages; developer and project group identifiers now org.soplos</li>
+          <li>Manual page installed compressed, and an invalid character in it fixed</li>
+          <li>Debian copyright declares Lucide (ISC), used for the interface icons</li>
+        </ul>
+      </description>
+    </release>
     <release version="3.0.0-1-beta" date="2026-10-19">
       <description>
         <p>Packaging and documentation standardisation.</p>

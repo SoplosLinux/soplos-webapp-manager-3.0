@@ -184,6 +184,11 @@
   </developer>
 
   <releases>
+    <release version="3.0.0-3-beta" date="2026-10-23">
+      <description>
+        <p>The window follows the light or dark theme of the desktop (Xfce, Plasma and GNOME); the button of the window still lets you choose.</p>
+      </description>
+    </release>
     <release version="3.0.0-2-beta" date="2026-10-22">
       <description>
         <p>Packaging and metadata fixes.</p>

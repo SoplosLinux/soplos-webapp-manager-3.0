@@ -1,4 +1,5 @@
 mod commands;
+mod system_theme;
 pub(crate) mod utils;
 
 pub use utils::is_running_in_vm;
@@ -19,6 +20,7 @@ pub fn run() {
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
+            system_theme::get_system_theme,
             commands::webapps::list_webapps,
             commands::webapps::create_webapp,
             commands::webapps::update_webapp,

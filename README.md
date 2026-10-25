@@ -21,10 +21,12 @@ Turns any website into its own desktop app: its own window, its own taskbar icon
 ## Features
 
 - Create a WebApp from any URL, with its own isolated browser profile and desktop entry.
-- Works with whichever supported browser you already have installed: Firefox, LibreWolf, Zen Browser, Chromium, Google Chrome, Brave, Vivaldi, Opera, Opera GX, Microsoft Edge, Helium or GNOME Web — native or Flatpak.
+- Works with whichever supported browser you already have installed: Firefox, LibreWolf, Zen Browser, Midori, Chromium, Google Chrome, Brave, Brave Origin, Vivaldi, Opera, Opera GX, Microsoft Edge, Helium or GNOME Web — native or Flatpak.
 - Drag a link from your browser's address bar onto the window to create a WebApp from it directly.
 - Automatic favicon lookup, or pick your own icon.
-- Optional navigation bar, incognito mode and extra browser launch parameters per WebApp.
+- Every section of the application menu as a category (Network, Office, Graphics, Audio & Video, Games, Education, Science, Development, System, Settings and Utilities), changeable when editing.
+- Extensions for each WebApp. With Firefox-based browsers, search addons.mozilla.org by name from the form, or add an `.xpi` file; they are installed in the profile of that WebApp. With browsers based on Chrome, a button opens the extension store of the browser with the profile of the WebApp.
+- Optional navigation bar, incognito mode and extra browser launch parameters per WebApp. For browsers based on Chrome the common parameters (start maximized, dark mode, no notifications, window size, user agent, proxy…) are checkboxes linked with the text field.
 - Edit or delete any WebApp at any time; deleting removes its desktop entry and its isolated profile.
 
 ## Architecture
@@ -49,7 +51,7 @@ soplos-webapp-manager-3.0/
 
 **No root required**: everything is plain filesystem work under the user's home directory. There is no `pkexec` in this app.
 
-**Browser detection**: covers both native binaries and Flatpak installs for Firefox, LibreWolf, Zen Browser, Chromium, Google Chrome, Brave, Vivaldi, Opera, Opera GX, Microsoft Edge, Helium and GNOME Web.
+**Browser detection**: covers both native binaries and Flatpak installs for Firefox, LibreWolf, Zen Browser, Midori, Chromium, Google Chrome, Brave, Brave Origin, Vivaldi, Opera, Opera GX, Microsoft Edge, Helium and GNOME Web. A Flatpak browser is allowed to see the folder of the profile of the WebApp, for that run only.
 
 **Favicon lookup**: falls back through DuckDuckGo's icon proxy and Google's favicon service; icons are read back as `data:` URIs so the frontend never needs filesystem access of its own.
 

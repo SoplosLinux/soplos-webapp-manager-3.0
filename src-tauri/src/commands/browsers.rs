@@ -44,6 +44,9 @@ const NATIVE_BROWSERS: &[NativeBrowser] = &[
     NativeBrowser { id: "zen", name: "Zen Browser", bins: &["zen", "zen-browser"] },
     NativeBrowser { id: "chromium", name: "Chromium", bins: &["chromium", "chromium-browser"] },
     NativeBrowser { id: "chrome", name: "Google Chrome", bins: &["google-chrome", "google-chrome-stable"] },
+    // Before "brave": a webapp is matched to its browser by whether its Exec
+    // line contains the browser's path, and "brave" must not claim it first.
+    NativeBrowser { id: "brave-origin", name: "Brave Origin", bins: &["brave-origin"] },
     NativeBrowser { id: "brave", name: "Brave", bins: &["brave", "brave-browser"] },
     NativeBrowser { id: "vivaldi", name: "Vivaldi", bins: &["vivaldi", "vivaldi-stable"] },
     NativeBrowser { id: "opera", name: "Opera", bins: &["opera", "opera-stable"] },
@@ -125,6 +128,34 @@ fn family_id(browser_id: &str) -> &str {
     browser_id.strip_suffix("-flatpak").unwrap_or(browser_id)
 }
 
+// The page of extensions of the browsers based on Chrome. Their extensions are
+// not files to copy into the profile: they are installed from the store of the
+// browser itself, in a normal window that uses the profile of the webapp, and
+// then they work in the window of the webapp too, since it is the same profile.
+fn extension_store_url(family: &str) -> Option<&'static str> {
+    match family {
+        "chromium" | "chrome" | "brave" | "brave-origin" | "vivaldi" | "helium" => Some("https://chromewebstore.google.com/category/extensions"),
+        "edge" => Some("https://microsoftedge.microsoft.com/addons"),
+        "opera" | "opera-gx" => Some("https://addons.opera.com/extensions/"),
+        _ => None,
+    }
+}
+
+/// The command that opens the extension store of the browser in a normal
+/// window with the profile of a webapp; None for a browser without one.
+pub fn get_store_command(browser: &Browser, profile_path: &str) -> Option<String> {
+    let url = extension_store_url(family_id(&browser.id))?;
+    let mut cmd: Vec<String> = Vec::new();
+    if browser.is_flatpak {
+        cmd.extend(["flatpak".to_string(), "run".to_string(), format!("--filesystem={profile_path}"), browser.flatpak_id.clone()]);
+    } else {
+        cmd.push(browser.executable.clone());
+    }
+    cmd.push(format!("--user-data-dir={profile_path}"));
+    cmd.push(url.to_string());
+    Some(cmd.join(" "))
+}
+
 pub fn get_launch_command(
     browser: &Browser,
     url: &str,
@@ -138,13 +169,22 @@ pub fn get_launch_command(
     let mut cmd: Vec<String> = Vec::new();
 
     if browser.is_flatpak {
-        cmd.extend(["flatpak".to_string(), "run".to_string(), browser.flatpak_id.clone()]);
+        // The profile lives outside the sandbox of the Flatpak, which cannot
+        // see it unless it is allowed to: without this the browser says its
+        // profile is missing or inaccessible. The permission is for this run
+        // only; the Flatpak's own settings stay as they are.
+        cmd.extend([
+            "flatpak".to_string(),
+            "run".to_string(),
+            format!("--filesystem={profile_path}"),
+            browser.flatpak_id.clone(),
+        ]);
     } else {
         cmd.push(browser.executable.clone());
     }
 
     match family {
-        "chromium" | "chrome" | "brave" | "vivaldi" | "edge" | "opera" | "opera-gx" | "helium" => {
+        "chromium" | "chrome" | "brave" | "brave-origin" | "vivaldi" | "edge" | "opera" | "opera-gx" | "helium" => {
             cmd.insert(0, format!("env CHROME_DESKTOP={class_name}.desktop"));
             cmd.push("--ozone-platform-hint=auto".to_string());
             cmd.push(format!("--wayland-app-id={class_name}"));
@@ -161,7 +201,7 @@ pub fn get_launch_command(
             cmd.push(format!("--app={url}"));
             let _ = show_navbar; // Chrome family has no navbar toggle, unlike Firefox.
         }
-        "firefox" | "librewolf" | "zen" => {
+        "firefox" | "librewolf" | "zen" | "midori" => {
             cmd.insert(0, format!("env MOZ_APP_REMOTINGNAME={class_name}"));
             cmd.push("-no-remote".to_string());
             cmd.push("-new-instance".to_string());

@@ -2,6 +2,23 @@
 
 All notable changes to Soplos WebApp Manager are documented in this file.
 
+## [3.0.0-4-beta] - 2026-10-24
+
+### Added
+
+- Extensions for each WebApp. For Firefox-based browsers (Firefox, LibreWolf, Zen Browser and Midori, Flatpak or not) the form searches addons.mozilla.org by name, so the extension wanted is found without leaving the program, and it can also be added from an `.xpi` file. The extensions are installed in the profile of that WebApp when it is saved, and can be removed from the same list. For browsers based on Chrome the form has a button that opens the extension store of the browser in a normal window with the profile of the WebApp, and what is installed there works in the WebApp too.
+- Launch parameters as checkboxes for the browsers based on Chrome: start maximized, dark mode, no notifications, no tab hover cards, window size, user agent, proxy and shared memory. The checkboxes and the text field are the same list: ticking a box writes its parameter in the field, and writing one in the field ticks its box. Anything else stays in the field.
+- Every section of the application menu is now a category: Graphics, Education, Science, System and Settings join the six there were, so a photo editor can be filed under Graphics.
+- The category can also be changed when editing a WebApp. The form shows the one it has; if it is left alone the categories are kept exactly as they were, and a value that is not in the list stays selectable instead of being replaced.
+- Brave Origin is detected, as a browser based on Chrome.
+
+### Fixed
+
+- A WebApp of a Flatpak browser did not open: the browser said its profile was missing or inaccessible, because the sandbox of the Flatpak could not see the folder of the profile. The launch command now allows it for that run, without changing the settings of the Flatpak. WebApps created before this version have to be saved again to get the new command.
+- Editing a WebApp of a Flatpak browser could show another browser, the first Flatpak one installed, and saving it changed the browser. The browser of a WebApp is now found by the whole name of the program or of the Flatpak, so a WebApp of Opera GX is no longer taken for one of Opera either.
+- Midori was detected but its WebApps were launched without the address or the profile. It is now launched like the other Firefox-based browsers.
+- In a dialog, scrolling past the end of its content no longer moves the window behind it.
+
 ## [3.0.0-3-beta] - 2026-10-23
 
 ### Added

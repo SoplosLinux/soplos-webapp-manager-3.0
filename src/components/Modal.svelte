@@ -70,7 +70,7 @@
       </div>
     </div>
 
-    <div class="px-5 pb-4 text-[0.85rem] text-text leading-relaxed overflow-y-auto content-scroll">
+    <div class="px-5 pb-4 text-[0.85rem] text-text leading-relaxed overflow-y-auto overscroll-contain content-scroll">
       <slot />
     </div>
 

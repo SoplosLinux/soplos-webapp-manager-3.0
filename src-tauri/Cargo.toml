@@ -1,6 +1,6 @@
 [package]
 name = "soplos-webapp-manager"
-version = "3.0.0-3-beta"
+version = "3.0.0-4-beta"
 description = "Soplos WebApp Manager"
 authors = ["Sergi Perich <info@soploslinux.com>"]
 license = "GPL-3.0-or-later"
@@ -26,6 +26,8 @@ serde_json = "1"
 # Favicon download (DuckDuckGo / Google s2 fallback chain, same as 2.x).
 ureq = "3"
 uuid = { version = "1", features = ["v4"] }
+# Reads the manifest of an extension (.xpi, a zip file) to learn its add-on ID.
+zip = { version = "2", default-features = false, features = ["deflate"] }
 # Encodes icon files as data: URIs for preview (see utils::icon_data_url).
 base64 = "0.22"
 

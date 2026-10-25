@@ -3,7 +3,7 @@
 // ~/.local/share/soplos-webapps/ — nothing here needs root, so there is no
 // pkexec involved anywhere in this module.
 
-use crate::commands::browsers::{get_launch_command, list_browsers_blocking, Browser};
+use crate::commands::browsers::{get_launch_command, get_store_command, list_browsers_blocking, Browser};
 use crate::utils::{desktop_dir, icon_data_url, icons_dir, profiles_dir, safe_id};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -30,6 +30,9 @@ pub struct WebApp {
     pub extra_params: String,
     #[serde(rename = "isIncognito")]
     pub is_incognito: bool,
+    // The Categories= value as found in the .desktop file, without the final
+    // semicolon, so the edit form can show the current one.
+    pub category: String,
 }
 
 #[derive(Deserialize)]
@@ -97,10 +100,19 @@ fn extract_url(exec_cmd: &str) -> String {
     String::new()
 }
 
+// The browser an Exec line starts, found by whole words: the path of the
+// program for a native one, the application id for a Flatpak. Looking for the
+// path as a piece of text took "/usr/bin/opera" for the start of
+// "/usr/bin/opera-gx", and every Flatpak (whose program is just "flatpak")
+// for the first one installed.
 fn find_browser_id(exec_cmd: &str, browsers: &[Browser]) -> String {
+    let words: Vec<&str> = exec_cmd.split_whitespace().collect();
     for b in browsers {
-        let matches = (!b.executable.is_empty() && exec_cmd.contains(&b.executable))
-            || (b.is_flatpak && exec_cmd.contains(&b.flatpak_id));
+        let matches = if b.is_flatpak {
+            words.contains(&b.flatpak_id.as_str())
+        } else {
+            !b.executable.is_empty() && words.contains(&b.executable.as_str())
+        };
         if matches {
             return b.id.clone();
         }
@@ -129,6 +141,10 @@ fn list_webapps_blocking() -> Result<Vec<WebApp>, String> {
         let Ok(content) = fs::read_to_string(&path) else { continue };
         let Some(desktop) = DesktopEntry::parse(&content) else { continue };
 
+        // A webapp made by an earlier version may still have the symlink that
+        // showed it twice in the menu.
+        remove_chrome_compat_links(&dir, id);
+
         let exec_cmd = desktop.get("Exec");
         let icon_path = desktop.get("Icon");
         webapps.push(WebApp {
@@ -141,6 +157,7 @@ fn list_webapps_blocking() -> Result<Vec<WebApp>, String> {
             show_navbar: desktop.get("X-Soplos-Navbar") == "true",
             extra_params: desktop.get("X-Soplos-ExtraParams"),
             is_incognito: desktop.get("X-Soplos-Incognito") == "true",
+            category: desktop.get("Categories").trim_end_matches(';').to_string(),
         });
     }
 
@@ -173,8 +190,10 @@ fn persist_icon(id: &str, icon_path: &str) -> String {
 
 // KDE Plasma 6 on Wayland often ignores --wayland-app-id and instead looks
 // for a .desktop matching Chrome's own internal id for the site
-// ("chrome-host.com__-Default"). A symlink under that name pointing at our
-// real .desktop file fixes taskbar grouping and icons there.
+// ("chrome-host.com__-Default"). The webapp's own .desktop file names that id
+// in StartupWMClass, which is what groups its window in the taskbar. There is
+// no second .desktop file for it: that would be a second entry of the same app
+// in the menu.
 fn chrome_compat_id(url: &str) -> Option<String> {
     let host = url.split_once("://").map(|(_, rest)| rest)?.split(['/', '?', '#']).next()?;
     if host.is_empty() {
@@ -183,33 +202,20 @@ fn chrome_compat_id(url: &str) -> Option<String> {
     Some(format!("chrome-{host}__-Default"))
 }
 
-fn manage_chrome_compat_links(dir: &Path, id: &str, url: &str, browser_id: &str) {
-    let family = browser_id.strip_suffix("-flatpak").unwrap_or(browser_id);
-    if !["chrome", "chromium", "brave", "vivaldi", "edge", "opera", "opera-gx", "helium"].contains(&family) {
-        return;
-    }
-    let Some(chrome_id) = chrome_compat_id(url) else { return };
-
-    // Remove any existing compat symlink for this webapp first.
-    if let Ok(entries) = fs::read_dir(dir) {
-        for entry in entries.flatten() {
-            let path = entry.path();
-            if path.file_name().and_then(|n| n.to_str()).map(|n| n.starts_with("chrome-")) != Some(true) {
-                continue;
-            }
-            if let Ok(target) = fs::read_link(&path) {
-                if target.to_string_lossy().ends_with(&format!("soplos-webapp-{id}.desktop")) {
-                    let _ = fs::remove_file(&path);
-                }
+/// Removes the symlinks `chrome-<host>__-Default.desktop` that earlier versions
+/// made to this webapp: each one showed the app twice in the menu.
+fn remove_chrome_compat_links(dir: &Path, id: &str) {
+    let Ok(entries) = fs::read_dir(dir) else { return };
+    for entry in entries.flatten() {
+        let path = entry.path();
+        if path.file_name().and_then(|n| n.to_str()).map(|n| n.starts_with("chrome-")) != Some(true) {
+            continue;
+        }
+        if let Ok(target) = fs::read_link(&path) {
+            if target.to_string_lossy().ends_with(&format!("soplos-webapp-{id}.desktop")) {
+                let _ = fs::remove_file(&path);
             }
         }
-    }
-
-    let compat_path = dir.join(format!("{chrome_id}.desktop"));
-    let target_name = format!("soplos-webapp-{id}.desktop");
-    if dir.join(&target_name).exists() && !compat_path.exists() {
-        #[cfg(unix)]
-        let _ = std::os::unix::fs::symlink(&target_name, &compat_path);
     }
 }
 
@@ -231,6 +237,9 @@ user_pref("datareporting.policy.dataSubmissionEnabled", false);
 // Force system titlebar to show window controls (since tabs are hidden)
 user_pref("browser.tabs.drawInTitlebar", false);
 user_pref("browser.tabs.inTitlebar", 0);
+// Extensions put in the extensions folder of this profile are used as they
+// are, without asking to enable them (see commands/extensions.rs).
+user_pref("extensions.autoDisableScopes", 0);
 "#;
     fs::write(profile_path.join("user.js"), user_js)?;
 
@@ -279,12 +288,12 @@ fn create_webapp_blocking(input: WebAppInput) -> Result<WebApp, String> {
     fs::create_dir_all(&profile_path).map_err(|e| e.to_string())?;
 
     let family = browser.id.strip_suffix("-flatpak").unwrap_or(&browser.id);
-    if family == "firefox" || family == "librewolf" || family == "zen" {
+    if family == "firefox" || family == "librewolf" || family == "zen" || family == "midori" {
         setup_firefox_profile(&profile_path, input.show_navbar).map_err(|e| e.to_string())?;
     }
 
     let class_name = format!("soplos-webapp-{id}");
-    let startup_class = if ["chrome", "chromium", "brave", "vivaldi", "edge", "opera", "opera-gx", "helium"].contains(&family) {
+    let startup_class = if ["chrome", "chromium", "brave", "brave-origin", "vivaldi", "edge", "opera", "opera-gx", "helium"].contains(&family) {
         chrome_compat_id(&input.url).unwrap_or_else(|| class_name.clone())
     } else {
         class_name.clone()
@@ -322,7 +331,7 @@ fn create_webapp_blocking(input: WebAppInput) -> Result<WebApp, String> {
         let _ = fs::set_permissions(&desktop_path, fs::Permissions::from_mode(0o755));
     }
 
-    manage_chrome_compat_links(&dir, &id, &input.url, &browser.id);
+    remove_chrome_compat_links(&dir, &id);
     update_desktop_database();
 
     Ok(WebApp {
@@ -335,6 +344,7 @@ fn create_webapp_blocking(input: WebAppInput) -> Result<WebApp, String> {
         show_navbar: input.show_navbar,
         extra_params: input.extra_params,
         is_incognito: input.is_incognito,
+        category: input.category,
     })
 }
 
@@ -350,8 +360,8 @@ fn update_webapp_blocking(id: String, input: WebAppInput) -> Result<bool, String
         return Ok(false);
     }
 
-    // The edit form doesn't offer a category selector (same as 2.x), so an
-    // empty category here means "keep whatever this webapp already has".
+    // An empty category means the form's selector was left alone: keep
+    // whatever this webapp already has.
     let category = if input.category.is_empty() {
         let existing = fs::read_to_string(&desktop_path).ok().and_then(|c| DesktopEntry::parse(&c).map(|d| d.get("Categories")));
         existing.unwrap_or_default().trim_end_matches(';').to_string()
@@ -367,12 +377,12 @@ fn update_webapp_blocking(id: String, input: WebAppInput) -> Result<bool, String
 
     let family = browser.id.strip_suffix("-flatpak").unwrap_or(&browser.id);
     let profile_path = profiles_dir()?.join(&id);
-    if family == "firefox" || family == "librewolf" || family == "zen" {
+    if family == "firefox" || family == "librewolf" || family == "zen" || family == "midori" {
         setup_firefox_profile(&profile_path, input.show_navbar).map_err(|e| e.to_string())?;
     }
 
     let class_name = format!("soplos-webapp-{id}");
-    let startup_class = if ["chrome", "chromium", "brave", "vivaldi", "edge", "opera", "opera-gx", "helium"].contains(&family) {
+    let startup_class = if ["chrome", "chromium", "brave", "brave-origin", "vivaldi", "edge", "opera", "opera-gx", "helium"].contains(&family) {
         chrome_compat_id(&input.url).unwrap_or_else(|| class_name.clone())
     } else {
         class_name.clone()
@@ -402,7 +412,7 @@ fn update_webapp_blocking(id: String, input: WebAppInput) -> Result<bool, String
     );
     fs::write(&desktop_path, content).map_err(|e| e.to_string())?;
 
-    manage_chrome_compat_links(&dir, &id, &input.url, &browser.id);
+    remove_chrome_compat_links(&dir, &id);
     update_desktop_database();
     Ok(true)
 }
@@ -423,20 +433,7 @@ fn delete_webapp_blocking(id: String) -> Result<bool, String> {
         }
     }
 
-    // Compatibility symlinks pointing at this webapp.
-    if let Ok(entries) = fs::read_dir(&dir) {
-        for entry in entries.flatten() {
-            let path = entry.path();
-            if path.file_name().and_then(|n| n.to_str()).map(|n| n.starts_with("chrome-")) != Some(true) {
-                continue;
-            }
-            if let Ok(target) = fs::read_link(&path) {
-                if target.to_string_lossy().ends_with(&format!("soplos-webapp-{id}.desktop")) {
-                    let _ = fs::remove_file(&path);
-                }
-            }
-        }
-    }
+    remove_chrome_compat_links(&dir, &id);
 
     let profile_path = profiles_dir()?.join(&id);
     if profile_path.exists() && fs::remove_dir_all(&profile_path).is_err() {
@@ -489,6 +486,29 @@ pub async fn pick_icon_file(app: tauri::AppHandle) -> Option<String> {
 #[tauri::command]
 pub async fn run_webapp(id: String) -> Result<(), String> {
     tauri::async_runtime::spawn_blocking(move || run_webapp_blocking(id)).await.map_err(|e| e.to_string())?
+}
+
+/// Opens the extension store of the browser of a webapp, in a normal window
+/// with the profile of that webapp, for the browsers based on Chrome.
+#[tauri::command]
+pub async fn open_extension_store(id: String) -> Result<(), String> {
+    tauri::async_runtime::spawn_blocking(move || open_extension_store_blocking(id)).await.map_err(|e| e.to_string())?
+}
+
+fn open_extension_store_blocking(id: String) -> Result<(), String> {
+    if id.is_empty() || id.contains(['/', '\\', '\0']) || id.starts_with('.') {
+        return Err("Not a webapp".to_string());
+    }
+    let desktop_path = desktop_dir()?.join(format!("soplos-webapp-{id}.desktop"));
+    let content = fs::read_to_string(&desktop_path).map_err(|e| e.to_string())?;
+    let desktop = DesktopEntry::parse(&content).ok_or("Invalid .desktop file")?;
+    let browsers = list_browsers_blocking();
+    let browser_id = find_browser_id(&desktop.get("Exec"), &browsers);
+    let browser = browsers.iter().find(|b| b.id == browser_id).ok_or("The browser of this webapp is not installed")?;
+    let profile_path = profiles_dir()?.join(&id);
+    let command = get_store_command(browser, &profile_path.to_string_lossy()).ok_or("This browser has no extension store")?;
+    std::process::Command::new("sh").arg("-c").arg(&command).spawn().map_err(|e| e.to_string())?;
+    Ok(())
 }
 
 fn run_webapp_blocking(id: String) -> Result<(), String> {

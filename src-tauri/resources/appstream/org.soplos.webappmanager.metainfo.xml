@@ -184,6 +184,17 @@
   </developer>
 
   <releases>
+    <release version="3.0.0-4-beta" date="2026-10-24">
+      <description>
+        <p>Extensions, launch parameters, categories and Flatpak browsers.</p>
+        <ul>
+          <li>Extensions for each WebApp: searched by name in addons.mozilla.org for Firefox-based browsers, and installed from the store of the browser for the ones based on Chrome</li>
+          <li>Launch parameters as checkboxes for the browsers based on Chrome, linked with the text field</li>
+          <li>All the sections of the application menu as categories, also when editing a WebApp</li>
+          <li>WebApps of Flatpak browsers open again, and the browser of a WebApp is found correctly; Brave Origin is detected and Midori is launched correctly</li>
+        </ul>
+      </description>
+    </release>
     <release version="3.0.0-3-beta" date="2026-10-23">
       <description>
         <p>The window follows the light or dark theme of the desktop (Xfce, Plasma and GNOME); the button of the window still lets you choose.</p>

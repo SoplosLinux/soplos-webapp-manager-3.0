@@ -10,7 +10,7 @@
   import AboutDialog from "./components/AboutDialog.svelte";
   import WebAppRow from "./components/WebAppRow.svelte";
   import WebAppFormModal from "./components/WebAppFormModal.svelte";
-  import type { Browser, WebApp, WebAppInput } from "./lib/webapps";
+  import type { Browser, ExtensionChanges, WebApp, WebAppInput } from "./lib/webapps";
   import { Plus, Minus, Moon, Sun, Globe } from "lucide-svelte";
 
   let webapps: WebApp[] = [];
@@ -63,12 +63,41 @@
     formTarget = { mode: "edit", webapp: w };
   }
 
-  async function saveWebapp(input: WebAppInput) {
-    if (formTarget?.mode === "edit") {
-      await api.invoke("update_webapp", { id: formTarget.webapp.id, input });
-    } else {
-      await api.invoke("create_webapp", { input });
+  // What went wrong with the extensions of the webapp just saved, one line for
+  // each; the webapp itself is saved anyway.
+  let extensionProblems: string[] = [];
+
+  async function applyExtensionChanges(webappId: string, changes: ExtensionChanges): Promise<string[]> {
+    const problems: string[] = [];
+    const attempt = async (name: string, action: () => Promise<unknown>) => {
+      try {
+        await action();
+      } catch (error) {
+        problems.push(`${name}: ${error}`);
+      }
+    };
+    for (const id of changes.remove) {
+      await attempt(id, () => api.invoke("remove_webapp_extension", { webappId, id }));
     }
+    for (const slug of changes.addSlugs) {
+      await attempt(slug, () => api.invoke("add_url_extension", { webappId, link: slug }));
+    }
+    for (const path of changes.addFiles) {
+      await attempt(path.split("/").pop() ?? path, () => api.invoke("add_local_extension", { webappId, path }));
+    }
+    return problems;
+  }
+
+  async function saveWebapp(input: WebAppInput, changes: ExtensionChanges) {
+    let webappId: string;
+    if (formTarget?.mode === "edit") {
+      webappId = formTarget.webapp.id;
+      await api.invoke("update_webapp", { id: webappId, input });
+    } else {
+      const created = await api.invoke<WebApp>("create_webapp", { input });
+      webappId = created.id;
+    }
+    extensionProblems = await applyExtensionChanges(webappId, changes);
     formTarget = null;
     await loadWebapps();
   }
@@ -301,6 +330,16 @@
     onConfirm={confirmDelete}
   >
     <p>{$_("webapp.deleteConfirmBody")}</p>
+  </Modal>
+{/if}
+
+{#if extensionProblems.length > 0}
+  <Modal variant="info" maxWidth={480} title={$_("webapp.extensions.failedTitle")} onClose={() => (extensionProblems = [])}>
+    <ul class="flex flex-col gap-1.5 text-[0.78rem] break-words">
+      {#each extensionProblems as problem}
+        <li>{problem}</li>
+      {/each}
+    </ul>
   </Modal>
 {/if}
 

@@ -2,6 +2,18 @@
 
 All notable changes to Soplos WebApp Manager are documented in this file.
 
+## [3.0.0-5-beta] - 2026-10-28
+
+### Changed
+
+- New application icon, in the sizes of the package, the window and the interface.
+- New hero image, with the circuit style of the other Soplos 3.0 programs.
+- New screenshots of every window, taken with the interface in English.
+
+### Fixed
+
+- A WebApp could show twice in the application menu: earlier versions made a `chrome-<host>__-Default.desktop` link next to its entry. The program no longer makes that link and removes the ones earlier versions left, when the WebApp is saved or removed.
+
 ## [3.0.0-4-beta] - 2026-10-24
 
 ### Added

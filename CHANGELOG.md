@@ -2,6 +2,12 @@
 
 All notable changes to Soplos WebApp Manager are documented in this file.
 
+## [3.0.0-6-beta] - 2026-10-29
+
+### Changed
+
+- The window no longer has the frame of the system: it is a card with rounded corners and its own minimize, maximize and close buttons at the top right. It can be moved from the top strip, the banner and the side bar, and double click on the strip maximizes it. The rounded corners need a compositing manager running, as the one of Xfce, Plasma or GNOME.
+
 ## [3.0.0-5-beta] - 2026-10-28
 
 ### Changed

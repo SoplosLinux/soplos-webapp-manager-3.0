@@ -1,5 +1,11 @@
 {
   "app": {
+    "window": {
+      "minimize": "Minimizează",
+      "maximize": "Maximizează",
+      "restore": "Restaurează",
+      "close": "Închide"
+    },
     "title": "Manager WebApp Soplos"
   },
   "hero": {

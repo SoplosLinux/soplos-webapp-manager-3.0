@@ -1,5 +1,11 @@
 {
   "app": {
+    "window": {
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "restore": "Restore",
+      "close": "Close"
+    },
     "title": "Soplos WebApp Manager"
   },
   "hero": {

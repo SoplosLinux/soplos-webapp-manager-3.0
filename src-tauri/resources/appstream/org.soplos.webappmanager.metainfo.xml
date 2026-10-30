@@ -184,6 +184,11 @@
   </developer>
 
   <releases>
+    <release version="3.0.0-6-beta" date="2026-10-29">
+      <description>
+        <p>The window no longer has the frame of the system: it is a card with rounded corners and its own minimize, maximize and close buttons.</p>
+      </description>
+    </release>
     <release version="3.0.0-5-beta" date="2026-10-28">
       <description>
         <p>New application icon, new hero image and new screenshots, taken with the interface in English. Fixed a WebApp showing twice in the application menu because of a leftover link from earlier versions.</p>

@@ -1,5 +1,11 @@
 {
   "app": {
+    "window": {
+      "minimize": "Minimizar",
+      "maximize": "Maximizar",
+      "restore": "Restaurar",
+      "close": "Fechar"
+    },
     "title": "Gerenciador de WebApps Soplos"
   },
   "hero": {

@@ -1,6 +1,6 @@
 [package]
 name = "soplos-webapp-manager"
-version = "3.0.0-6-beta"
+version = "3.0.0-7-beta"
 description = "Soplos WebApp Manager"
 authors = ["Sergi Perich <info@soploslinux.com>"]
 license = "GPL-3.0-or-later"

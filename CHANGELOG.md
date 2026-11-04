@@ -2,6 +2,13 @@
 
 All notable changes to Soplos WebApp Manager are documented in this file.
 
+## [3.0.0-7-beta] - 2026-11-04
+
+### Fixed
+
+- The application metadata points to the launcher that the package installs, `soplos-webapp-manager.desktop`, so the software centers link the entry of the menu with the program.
+- The manual page of the program is the same text in the project and in the package.
+
 ## [3.0.0-6-beta] - 2026-10-29
 
 ### Changed

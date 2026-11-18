@@ -87,41 +87,49 @@
     <keyword>browser</keyword>
     <keyword>pwa</keyword>
     <keyword>site specific browser</keyword>
+    <keyword>soplos</keyword>
     <keyword xml:lang="es">webapp</keyword>
     <keyword xml:lang="es">ssb</keyword>
     <keyword xml:lang="es">navegador</keyword>
     <keyword xml:lang="es">pwa</keyword>
     <keyword xml:lang="es">navegador específico del sitio</keyword>
+    <keyword xml:lang="es">soplos</keyword>
     <keyword xml:lang="fr">webapp</keyword>
     <keyword xml:lang="fr">ssb</keyword>
     <keyword xml:lang="fr">navigateur</keyword>
     <keyword xml:lang="fr">pwa</keyword>
     <keyword xml:lang="fr">navigateur spécifique au site</keyword>
+    <keyword xml:lang="fr">soplos</keyword>
     <keyword xml:lang="de">WebApp</keyword>
     <keyword xml:lang="de">SSB</keyword>
     <keyword xml:lang="de">Browser</keyword>
     <keyword xml:lang="de">PWA</keyword>
     <keyword xml:lang="de">Site-Specific-Browser</keyword>
+    <keyword xml:lang="de">soplos</keyword>
     <keyword xml:lang="pt">webapp</keyword>
     <keyword xml:lang="pt">ssb</keyword>
     <keyword xml:lang="pt">navegador</keyword>
     <keyword xml:lang="pt">pwa</keyword>
     <keyword xml:lang="pt">navegador específico do site</keyword>
+    <keyword xml:lang="pt">soplos</keyword>
     <keyword xml:lang="it">webapp</keyword>
     <keyword xml:lang="it">ssb</keyword>
     <keyword xml:lang="it">browser</keyword>
     <keyword xml:lang="it">pwa</keyword>
     <keyword xml:lang="it">browser specifico del sito</keyword>
+    <keyword xml:lang="it">soplos</keyword>
     <keyword xml:lang="ro">webapp</keyword>
     <keyword xml:lang="ro">ssb</keyword>
     <keyword xml:lang="ro">browser</keyword>
     <keyword xml:lang="ro">pwa</keyword>
     <keyword xml:lang="ro">browser specific site</keyword>
+    <keyword xml:lang="ro">soplos</keyword>
     <keyword xml:lang="ru">веб-приложение</keyword>
     <keyword xml:lang="ru">ssb</keyword>
     <keyword xml:lang="ru">браузер</keyword>
     <keyword xml:lang="ru">pwa</keyword>
     <keyword xml:lang="ru">браузер для сайта</keyword>
+    <keyword xml:lang="ru">soplos</keyword>
   </keywords>
 
   <launchable type="desktop-id">soplos-webapp-manager.desktop</launchable>

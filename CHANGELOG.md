@@ -6,6 +6,10 @@ All notable changes to Soplos WebApp Manager are documented in this file.
 
 First stable release.
 
+### Fixed
+
+- Searching "soplos" in the application menu of Plasma finds the program: the launcher and the AppStream metadata have the keyword `soplos` in the eight languages, as the other Soplos programs.
+
 ## [3.0.0-7-beta] - 2026-11-04
 
 ### Fixed
